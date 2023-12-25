@@ -124,4 +124,6 @@ const words = [
 	},
 ]
 
+export const selectedItems = [];
+
 export default words

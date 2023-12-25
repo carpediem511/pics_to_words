@@ -1,25 +1,60 @@
-import Card from "../Card";
 import { useState } from "react";
+import Card from "../Card";
 import words from "../Data";
+import Hearts from "../Hearts";
+
 
 function App() {
 
 	// Состояния для отслеживания выбранных и завершенных карточек
-	const [selectedIndex, setSelectedIndex] = useState([2, 3])
-	const [finishedIndex, setFinishedIndex] = useState([])
+	const [selectedItems, setSelectedItems] = useState([])
+	const [finishedItems, setFinishedItems] = useState([])
+	const [stepsCount, setStepsCount] = useState(0)
+	// Функция для обработки выбора карточки
+	const handleCardClick = (id) => {
+		// Проверяем, выбрана ли уже эта карточка
+		if (selectedItems.includes(id)) {
+			return
+			//setSelectedItems(selectedItems.filter((newItem) => newItem != id))
+		} else { // Проверяем, выбрано ли уже 2 карточки
 
-	// Функции для проверки, выбрана ли карточка или завершена ли она
-	const isSelected = (index) => selectedIndex.includes(index)
-	const isFinished = (index) => finishedIndex.includes(index)
+			if (selectedItems.length < 2) {
 
-	const classNameOfCard = `card ${isSelected ? 'selected' : ''} ${isFinished ? 'disabled' : ''}`
+				setSelectedItems([...selectedItems, id])
+			}
+
+		}
+	}
+
+
+	const checkItems = () => {
+
+		setStepsCount((step) => step + 1)
+	}
+
+	const hearts = Array(3).fill(null).map((_, heart) => {
+		return (
+			<span className={heart < stepsCount ? 'hit-points-used' : 'hit-points-unused'} />
+		);
+	});
+
 
 	return (
 		<>
 			<section className="game max-w-screen-lg mx-auto md:max-w-screen-md sm:max-w-screen-sm">
+				<Hearts hearts={hearts} count={3} value={stepsCount} />
 				<div className="cards my-12 grid gap-1 grid-cols-2 md:grid-cols-3  lg:grid-cols-4">
-					{words.map((item, index) => (
-						<Card key={index} classNameOfCard={classNameOfCard} isSelected={isSelected} isFinished={isFinished} content={item.content} type={item.type} />
+					{words.map((item) => (
+						<Card
+							key={item.id}
+							id={item.id}
+							onCardClick={handleCardClick}
+							selectedItems={selectedItems.includes(item.id)}
+							finishedItems={finishedItems.includes(item.id)}
+							content={item.content}
+							type={item.type}
+							checkItems={checkItems}
+						/>
 					))}
 				</div>
 			</section>
