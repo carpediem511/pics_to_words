@@ -3,7 +3,7 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url("../fonts/PTSans-Regular.woff2") format("woff2");
+  src: url('../../../public/fonts/PTSans-Regular.ttf') format('truetype');
 }
 
 @font-face {
@@ -11,7 +11,7 @@
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url("../fonts/PTSans-Bold.woff2") format("woff2");
+  src: url('../../../public/fonts/PTSans-Bold.ttf') format('truetype');
 }
 
 body {
@@ -21,7 +21,7 @@ body {
   line-height: 20px;
   color: #000000;
   background-color: #fffbef;
-  background-image: url("../img/bg.svg");
+  background-image: url("../../../public/images/bg.svg");
   background-position: top center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -74,7 +74,7 @@ body {
   content: "";
   width: 10px;
   height: 12px;
-  background-image: url("../img/marker.svg");
+  background-image: url("../../../public/images/marker.png");
   background-position: center;
   background-repeat: no-repeat;
   flex: none;
@@ -106,15 +106,15 @@ body {
 }
 
 .ico-button-fin {
-  background-image: url("../img/fin.svg");
+ background-image: url("../../../public/images/fin-btn.png");
 }
 
 .ico-button-ger {
-  background-image: url("../img/ger.svg");
+/*  background-image: url("../img/ger.svg");*/
 }
 
 .ico-button-ita {
-  background-image: url("../img/ita.svg");
+/*  background-image: url("../img/ita.svg");*/
 }
 
 .rules .ico-button {
@@ -143,7 +143,7 @@ body {
 .hit-points-used {
   width: 22px;
   height: 20px;
-  background-image: url("../img/hart-gray.svg");
+  background-image: url("../../../public/images/heart-red.png");
   background-position: center;
   background-repeat: no-repeat;
 }
@@ -151,7 +151,7 @@ body {
 .hit-points-unused {
   width: 22px;
   height: 20px;
-  background-image: url("../img/hart-red.svg");
+  background-image: url("../../../public/images/heart-black.png");
   background-position: center;
   background-repeat: no-repeat;
 }
@@ -162,7 +162,6 @@ body {
   width: 287px;
   height: 12px;
   background-color: #cfd7e4;
-
   background-image: repeating-linear-gradient(to right, #cfd7e4, #cfd7e4 46px, #fffbef 46px, #fffbef 48px);
   border-radius: 18px;
   overflow: hidden;
@@ -335,14 +334,14 @@ body {
   line-height: 40px;
   text-align: center;
   color: #ffffff;
-  background-image: url("../img/bg-green.svg");
+  background-image: url("../../../public/images/bg-green.svg");
   background-position: top center;
   background-repeat: no-repeat;
   max-height: 90px;
 }
 
 .modal-box-lose .modal-caption {
-  background-image: url("../img/bg-red.svg");
+  background-image: url("../../../public/images/bg-red.svg");
   background-position: top center;
   background-repeat: no-repeat;
 }
