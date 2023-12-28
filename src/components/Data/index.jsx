@@ -118,7 +118,7 @@ const words = [
 	},
 	{
 		id: uuid4(),
-		token: "Веб=сайт",
+		token: "Веб-сайт",
 		type: 'text',
 		content: 'Website',
 	},
@@ -126,4 +126,15 @@ const words = [
 
 export const selectedItems = [];
 
+export const results = [
+	{ name: 'Мальвина', steps: 1 },
+	{ name: 'Карина', steps: 3 },
+	{ name: 'Стефания', steps: 5 }
+];
+
 export default words
+
+export const AppRoute = {
+	Game: 'game',
+	Results: 'results',
+};

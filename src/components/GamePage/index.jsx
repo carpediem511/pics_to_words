@@ -9,7 +9,7 @@ import { useGame } from "../GameLogic"
 const TIMEOUT = 800;
 const LIVES_COUNT = 3;
 
-const GameDisplay = () => {
+const GamePage = ({ onShowResults }) => {
 
 	const {
 		finishedItems,
@@ -50,6 +50,9 @@ const GameDisplay = () => {
 	const modalCaption = isWin ? 'Победа!' : 'Поражение'
 	const modalDescription = `Вы нашли ${finishedItems.length / 2} слова.`
 
+	const handleResultsClick = () => {
+		onShowResults(finishedItems.length / 2);
+	};
 
 	return (
 		<>
@@ -74,7 +77,7 @@ const GameDisplay = () => {
 					<Modal className={modalClassname}>
 						<h3 className="modal-caption">{modalCaption}</h3>
 						<p className="modal-description">{modalDescription}</p>
-						<button onClick={handleReset} className="button" type="button">Новая игра</button>
+						<button onClick={handleResultsClick} className="button" type="button">Результаты</button>
 					</Modal>
 				)}
 			</section>
@@ -82,4 +85,4 @@ const GameDisplay = () => {
 	);
 }
 
-export default GameDisplay
+export default GamePage
