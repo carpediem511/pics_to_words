@@ -1,38 +1,32 @@
 import { useState } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import InitialPage from "../InitialPage";
 import GamePage from "../GamePage";
 import Results from "../Results";
-import { results, AppRoute } from "../Data";
-
 
 function App() {
 
-	const [page, setPage] = useState(AppRoute.Game);
 	const [result, setResult] = useState(0)
 
 	const showResults = (wordsCount) => {
 		setResult(wordsCount)
-		setPage(AppRoute.Results)
 	}
 
 	const handleReset = () => {
-
-		setPage(AppRoute.Game)
-	}
-
-	const getPage = (route) => {
-
-		switch (route) {
-
-			case AppRoute.Game:
-				return <GamePage onShowResults={showResults} />;
-			case AppRoute.Results:
-				return (<Results current={result} results={results} onResetGame={handleReset} />)
-			default:
-				return null;
-		}
-
+		setResult(0);
 	};
-	return getPage(page);
+
+	return (
+		<>
+			<BrowserRouter>
+				<Routes>
+					<Route path="/" element={<InitialPage />} />
+					<Route path="/game" element={<GamePage onShowResults={showResults} />} />
+					<Route path="/results" element={<Results current={result} onResetGame={handleReset} />} />
+				</Routes>
+			</BrowserRouter>
+		</>
+	);
 }
 
 export default App;
