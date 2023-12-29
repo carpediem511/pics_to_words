@@ -1,39 +1,36 @@
 const Results = ({ results, current, onResetGame }) => {
 
-	const sortedResults = [
+	const sortResults = [
 		...results,
 		{ name: "Ваш результат", steps: current }]
 		.sort((a, b) => b.steps - a.steps)
-	const resultsRows = sortedResults.map(({ name, steps }, index) => (
 
-		<tr key={name} className={`result-table-row ${steps === current ? 'active' : ''}`}>
-			<td>{index + 1}</td>
-			<td>{name}</td>
-			<td>{steps}</td>
-		</tr>
-	))
+	const sortedResults = sortResults();
 
 	return (
-
-		<>
-			<section className="result">
-				<h2>Pics to words: лучшие результаты</h2>
-				<table className="result-table">
-					<thead>
-						<tr className="result-table-row">
-							<th>Место</th>
-							<th>Имя</th>
-							<th>Очки</th>
+		<section className="result">
+			<h2>Pics to words: лучшие результаты</h2>
+			<table className="result-table">
+				<thead>
+					<tr className="result-table-row">
+						<th>Место</th>
+						<th>Имя</th>
+						<th>Очки</th>
+					</tr>
+				</thead>
+				<tbody>
+					{sortedResults.map(({ name, steps }, index) => (
+						<tr key={name} className={`result-table-row ${steps === current ? 'active' : ''}`}>
+							<td>{index + 1}</td>
+							<td>{name}</td>
+							<td>{steps}</td>
 						</tr>
-					</thead>
-					<tbody>
-						{resultsRows}
-					</tbody>
-				</table>
-				<button onClick={onResetGame} className="button" type="button">Новая игра</button>
-			</section>
-		</>
-	)
+					))}
+				</tbody>
+			</table>
+			<button onClick={onResetGame} className="button">Новая игра</button>
+		</section>
+	);
 }
 
-export default Results
+export default Results;

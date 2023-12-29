@@ -2,23 +2,18 @@ import '../../styles.css'
 
 const Card = ({ id, selectedItems, finishedItems, onCardClick, content, type, isChecking }) => {
 
-	const isFinished = finishedItems.includes(id);
-	const isSelected = selectedItems.includes(id);
+	const isFinished = finishedItems.includes(id);  // Проверяем, отгадана ли карточка
+	const isSelected = selectedItems.includes(id); // Проверяем, выбрана ли карточка
 
-
-
-	const handleClick = () => {
+	const handleClick = () => { //если карточка отгадана, то выходим , иначе вызываем функцию
 
 		if (isFinished) {
 			return
 		}
-
 		onCardClick(id)
-
 	}
 
 	const showError = isChecking && isSelected && !isFinished;
-
 	const classNameOfCard = `card ${isSelected ? 'selected' : ''} ${isFinished ? 'disabled' : ''} ${showError ? 'error' : ''}`;
 
 	return (

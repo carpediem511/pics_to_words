@@ -1,28 +1,31 @@
 import { useState } from "react";
-import Card from "../Card";
-import words from "../Data";
-import Hearts from "../Hearts";
-import Modal from "../Modal";
-import Progress from "../Progress";
-import { useGame } from "../GameLogic"
+import Progress from '../Progress'
+import Hearts from '../Hearts'
+import Card from '../Card'
+import Modal from '../Modal'
+import { Words } from '../Data'
 
-const TIMEOUT = 800;
-const LIVES_COUNT = 3;
+const timeOut = 800; // Время задержки для анимации карточки
+const livesCount = 3;
 
 const GamePage = ({ onShowResults }) => {
 
-	const {
-		finishedItems,
-		handleReset,
-		checkItems,
-		errorsCount,
-		isGameOver,
-		isWin,
-	} = useGame(words);
+	const [finishedItems, setFinishedItems] = useState([]);
+	const [selectedItems, setSelectedItems] = useState([]);
+	const [stepsCount, setStepsCount] = useState(0);
 
-	// Состояния для отслеживания выбранных и завершенных карточек
-	const [selectedItems, setSelectedItems] = useState([])
+	// Проверка двух выбранных карточек на совпадение
+	const checkItems = (firstItem, secondItem) => {
+		const firstWord = Words.find(({ id }) => id === firstItem);
+		const secondWord = Words.find(({ id }) => id === secondItem);
 
+		if (firstWord.type === secondWord.type) return;
+		if (firstWord.token === secondWord.token) {
+			setFinishedItems((items) => [...items, firstItem, secondItem]);
+		}
+
+		setStepsCount((step) => step + 1);
+	};
 
 	// Функция для обработки выбора карточки
 	const handleCardClick = (id) => {
@@ -38,18 +41,21 @@ const GamePage = ({ onShowResults }) => {
 				checkItems(selectedItems[0], id);
 				setTimeout(() => {
 					setSelectedItems([]);
-				}, TIMEOUT);
+				}, timeOut);
 				break;
 			default:
 				setSelectedItems([]);
 		}
+		setStepsCount((step) => step + 1);
 	};
 
 
-	const modalClassname = isWin ? '' : 'modal-box-lose'
-	const modalCaption = isWin ? 'Победа!' : 'Поражение'
-	const modalDescription = `Вы нашли ${finishedItems.length / 2} слова.`
+	const errorsCount = stepsCount - finishedItems.length / 2;
+	const isWin = finishedItems.length === Words.length;
+	const isGameOver = isWin || errorsCount <= 0;
+	const modalClassname = isWin ? '' : 'modal-box-lose';
 
+	// Передача результатов в родительский компонент
 	const handleResultsClick = () => {
 		onShowResults(finishedItems.length / 2);
 	};
@@ -57,10 +63,10 @@ const GamePage = ({ onShowResults }) => {
 	return (
 		<>
 			<section className="game max-w-screen-lg mx-auto md:max-w-screen-md sm:max-w-screen-sm">
-				<Progress value={finishedItems.length} max={words.length} />
-				<Hearts count={LIVES_COUNT} value={errorsCount} />
-				<ul className="cards my-12 grid gap-1 grid-cols-2 md:grid-cols-3  lg:grid-cols-4">
-					{words.map((item) => (
+				<Progress value={finishedItems.length} max={Words.length} />
+				<Hearts count={livesCount} value={errorsCount} />
+				<ul className="cards my-12 grid gap-1 grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+					{Words.map((item) => (
 						<Card
 							key={item.id}
 							id={item.id}
@@ -74,11 +80,7 @@ const GamePage = ({ onShowResults }) => {
 					))}
 				</ul>
 				{isGameOver && (
-					<Modal className={modalClassname}>
-						<h3 className="modal-caption">{modalCaption}</h3>
-						<p className="modal-description">{modalDescription}</p>
-						<button onClick={handleResultsClick} className="button" type="button">Результаты</button>
-					</Modal>
+					<Modal className={modalClassname} isWin={isWin} finishedItems={finishedItems.length} onResultsClick={handleResultsClick} />
 				)}
 			</section>
 		</>
