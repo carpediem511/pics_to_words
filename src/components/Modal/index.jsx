@@ -1,7 +1,17 @@
+import getDeclension from "@dubaua/get-declension";
+
 const Modal = ({ className, isWin, finishedItems, onResultsClick }) => {
 
 	const modalCaption = isWin ? 'Победа!' : 'Поражение';
-	const modalDescription = `Вы нашли ${finishedItems.length / 2} слова.`;
+	const pairsCount = finishedItems / 2;
+
+	const wordsDeclension = getDeclension({
+		count: pairsCount,
+		one: 'совпадение', few: 'совпадения', many: 'совпадений'
+	});
+
+
+	const modalDescription = `Вы нашли  ${wordsDeclension}.`;
 
 	return (
 		<div className={`modal ${className}`}>

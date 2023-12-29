@@ -1,9 +1,12 @@
 const Progress = ({ value, max }) => {
+
+	const progressWidth = `${(max - value) / max * 100}%`
+
 	return (
 		<div className="progress-wrapper">
-			<div className="progress" style={{ width: `${(max - value) / max * 100}%` }}>
-			</div>
+			<div className="progress" style={{ width: progressWidth }}></div>
 		</div>
+
 	);
 }
 

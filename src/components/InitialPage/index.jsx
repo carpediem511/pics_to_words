@@ -1,13 +1,14 @@
 import { gameLanguage } from "../Data";
+import { Link } from 'react-router-dom';
 
-const InitialPage = ({ onStart }) => {
+const InitialPage = () => {
 
 	const buttons = gameLanguage.map(languageItem => {
 		return {
 			icon: languageItem.icon,
 			label: languageItem.label,
 			type: languageItem.type,
-			onClick: () => onStart(languageItem.type),
+			to: `/game/${languageItem.type}`,
 		};
 	});
 
@@ -36,10 +37,10 @@ const InitialPage = ({ onStart }) => {
 					</li>
 				</ul>
 				<div className="flex justify-center">
-					{buttons.map(({ icon, label, onClick }) => (
-						<button className={`ico-button ico-button-${icon}`} key={icon} onClick={onClick} type="button">
+					{buttons.map(({ icon, label, to }) => (
+						<Link to={to} className={`ico-button ico-button-${icon}`} key={icon} type="button">
 							<span>{label}</span>
-						</button>
+						</Link>
 					))}
 				</div>
 			</section >

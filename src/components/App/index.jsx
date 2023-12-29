@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import InitialPage from "../InitialPage";
 import GamePage from "../GamePage";
 import Results from "../Results";
+import { results } from "../Data";
 
 function App() {
 
@@ -19,10 +20,11 @@ function App() {
 	return (
 		<>
 			<BrowserRouter>
+				<h2 className="text-center font-bold text-2xl my-10">Сможешь ли ты найти все совпадения?</h2>
 				<Routes>
 					<Route path="/" element={<InitialPage />} />
-					<Route path="/game" element={<GamePage onShowResults={showResults} />} />
-					<Route path="/results" element={<Results current={result} onResetGame={handleReset} />} />
+					<Route path="/game/:languageType" element={<GamePage onShowResults={showResults} onResetGame={handleReset} />} />
+					<Route path="/results" element={<Results results={results} current={result} />} />
 				</Routes>
 			</BrowserRouter>
 		</>

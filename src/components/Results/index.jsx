@@ -1,11 +1,17 @@
-const Results = ({ results, current, onResetGame }) => {
+import { useNavigate } from 'react-router-dom';
+
+const Results = ({ results, current }) => {
+
+	const navigate = useNavigate();
 
 	const sortResults = [
 		...results,
 		{ name: "Ваш результат", steps: current }]
 		.sort((a, b) => b.steps - a.steps)
 
-	const sortedResults = sortResults();
+	const handleResetGame = () => {
+		navigate('/');
+	};
 
 	return (
 		<section className="result">
@@ -19,7 +25,7 @@ const Results = ({ results, current, onResetGame }) => {
 					</tr>
 				</thead>
 				<tbody>
-					{sortedResults.map(({ name, steps }, index) => (
+					{sortResults.map(({ name, steps }, index) => (
 						<tr key={name} className={`result-table-row ${steps === current ? 'active' : ''}`}>
 							<td>{index + 1}</td>
 							<td>{name}</td>
@@ -28,7 +34,7 @@ const Results = ({ results, current, onResetGame }) => {
 					))}
 				</tbody>
 			</table>
-			<button onClick={onResetGame} className="button">Новая игра</button>
+			<button onClick={handleResetGame} className="button">Новая игра</button>
 		</section>
 	);
 }
