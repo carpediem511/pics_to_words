@@ -38,16 +38,13 @@ body {
   text-align: center;
 }
 
-.rules img {
-  display: block;
-  margin: 0 auto 30px;
-}
-
 .rules h2 {
   margin: 0;
   margin-bottom: 20px;
   font-size: 24px;
   line-height: 32px;
+  font-weight: 700;
+  color: #2e63b3;
 }
 
 .rules h3 {
@@ -56,6 +53,7 @@ body {
   margin: 0 auto 15px;
   font-size: 16px;
   line-height: 20px;
+  font-weight: 700;
 }
 
 .rules-list {
@@ -75,13 +73,9 @@ body {
   margin-bottom: 10px;
 }
 
-.rules-list li::before {
-  content: "";
-  width: 10px;
-  height: 12px;
-  background-image: url("/public/images/marker.png");
-  background-position: center;
-  background-repeat: no-repeat;
+.rules-list img {
+  width: 20px;
+  height: 20px;
   flex: none;
 }
 
@@ -96,11 +90,24 @@ body {
   background-color: #2e63b3;
   background-position: left 12px center;
   background-repeat: no-repeat;
+  background-size: 24px 24px;
   border: none;
-  border-radius: 20px;
+  border-radius: 10px;
   cursor: pointer;
   box-sizing: border-box;
+  width: 142px;
+  height: 42px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+.ico-button span {
+  display: inline-block; /* Добавляем для корректного выравнивания текста */
+  vertical-align: middle; /* Добавляем для вертикального выравнивания текста по центру */
+}
+
 
 .ico-button:hover {
   background-color: #438eff;
@@ -110,16 +117,20 @@ body {
   background-color: #438eff;
 }
 
-.ico-button-fin {
- background-image: url("/public/images/fin-btn.png");
+.ico-button-en {
+ background-image: url("/public/images/icon-united-kingdom.png");
 }
 
 .ico-button-ger {
-/*  background-image: url("../img/ger.svg");*/
+ background-image: url("/public/images/icon-germany.png");
 }
 
-.ico-button-ita {
-/*  background-image: url("../img/ita.svg");*/
+.ico-button-tur {
+ background-image: url("/public/images/icon-turkey.png");
+}
+
+.ico-button-vi{
+ background-image: url("/public/images/icon-vietnam.png");
 }
 
 .rules .ico-button {
@@ -428,3 +439,4 @@ body {
     box-shadow: 0 0 0 0 rgba(46, 99, 178, 0.7);
   }
 }
+
