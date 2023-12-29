@@ -20,7 +20,7 @@ const Card = ({ id, selectedItems, finishedItems, onCardClick, content, type, is
 
 		<>
 			<li
-				className={`${classNameOfCard} card w-32 h-32 mx-auto mt-4 shadow-lg border rounded-md duration-300 hover:shadow-sm flex items-center justify-center sm:w-44 sm:h-44`}
+				className={`${classNameOfCard} card w-28 h-28 mx-auto mt-4 md:w-36 md:h-36 lg:w-48 lg:h-48 shadow-lg border rounded-md duration-300 hover:shadow-sm flex items-center justify-center sm:w-44 sm:h-44`}
 				onClick={handleClick}
 			>
 				{type === 'text' ? (
@@ -33,6 +33,7 @@ const Card = ({ id, selectedItems, finishedItems, onCardClick, content, type, is
 					/>
 				)}
 			</li>
+
 		</>
 	)
 }

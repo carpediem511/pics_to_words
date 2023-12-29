@@ -73,9 +73,11 @@ const GamePage = ({ onShowResults }) => {
 
 	return (
 		<>
-			<section className="game max-w-screen-lg mx-auto md:max-w-screen-md sm:max-w-screen-sm">
-				<Progress value={finishedItems.length} max={languageWords.length} />
-				<Hearts count={livesCount} value={errorsCount} />
+			<section className="game max-w-screen-lg mx-auto md:max-w-screen-md sm:max-w-screen-sm px-4 sm:px-6 lg:px-8">
+				<div className="flex items-center gap-10 mini:flex-col">
+					<Progress value={finishedItems.length} max={languageWords.length} />
+					<Hearts count={livesCount} value={errorsCount} />
+				</div>
 				<ShuffleCards
 					languageWords={languageWords}
 					onCardClick={handleCardClick}
@@ -99,4 +101,3 @@ const GamePage = ({ onShowResults }) => {
 }
 
 export default GamePage
-

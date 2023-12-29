@@ -27,21 +27,30 @@ const ShuffleCards = ({ languageWords, onCardClick, selectedItems, finishedItems
 
 	return (
 		<>
-			<button className="button flex flex-end" type="button" onClick={handleShuffleClick}>Перемешать карточки</button>
-			<ul className="cards my-12 grid gap-1 grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-				{shuffledWords.map((item) => (
-					<Card
-						key={item.id}
-						id={item.id}
-						onCardClick={onCardClick}
-						content={item.content}
-						type={item.type}
-						selectedItems={selectedItems}
-						finishedItems={finishedItems}
-						isChecking={isChecking}
-					/>
-				))}
-			</ul>
+			<div className="flex flex-col items-center justify-center min-h-screen">
+				<button className="button my-6 md:my-8" type="button" onClick={handleShuffleClick}>Перемешать карточки</button>
+				<div className="mx-auto max-w-6xl">
+
+					<div className="flex flex-wrap justify-between gap-4 md:gap-6 lg:gap-8">
+						{shuffledWords.map((item) => (
+							<div key={item.id} className="flex justify-center text-center items-center mb-4 md:mb-6 lg:mb-8">
+								<Card
+									id={item.id}
+									onCardClick={onCardClick}
+									content={item.content}
+									type={item.type}
+									selectedItems={selectedItems}
+									finishedItems={finishedItems}
+									isChecking={isChecking}
+								/>
+							</div>
+						))}
+					</div>
+				</div>
+			</div>
+
+
+
 		</>
 	);
 };

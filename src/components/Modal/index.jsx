@@ -15,10 +15,10 @@ const Modal = ({ className, isWin, finishedItems, onResultsClick }) => {
 
 	return (
 		<div className={`modal ${className}`}>
-			<div className="modal-box">
-				<h3 className="modal-caption">{modalCaption}</h3>
-				<p className="modal-description">{modalDescription}</p>
-				<button onClick={onResultsClick} className="button" type="button">Результаты</button>
+			<div className="modal-box bg-white p-4 rounded-lg shadow-lg max-w-xs mx-auto md:max-w-md lg:max-w-lg xl:max-w-xl">
+				<h3 className="modal-caption text-lg md:text-xl lg:text-2xl mb-2 md:mb-3 lg:mb-4">{modalCaption}</h3>
+				<p className="modal-description text-sm md:text-base lg:text-lg mb-4 md:mb-6 lg:mb-8">{modalDescription}</p>
+				<button onClick={onResultsClick} className="button px-4 py-2 text-sm md:text-base lg:text-lg" type="button">Результаты</button>
 			</div>
 		</div>
 	);

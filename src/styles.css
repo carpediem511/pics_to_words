@@ -139,10 +139,6 @@ body {
 }
 
 .game {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  align-items: center;
-  gap: 30px;
   padding-top: 30px;
   padding-bottom: 30px;
   margin: 0 auto;
@@ -173,8 +169,8 @@ body {
 }
 
 .progress-wrapper {
-  display: flex;
-  justify-self: center;
+
+
   width: 287px;
   height: 12px;
   background-color: #cfd7e4;
@@ -296,9 +292,6 @@ body {
 }
 
 .result-table-row {
-  display: grid;
-  grid-template-columns: 95px 155px 75px;
-  align-items: center;
   margin: 0 20px 2px;
 }
 
